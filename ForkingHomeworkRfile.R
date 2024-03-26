@@ -10,3 +10,9 @@ diamonds%>%
   filter(price > 7000 & price < 10000)%>%
   arrange(desc(carat))%>%
   slice(1:20)
+
+diamonds_dt <- as.data.table(ggplot2::diamonds)
+result_dt <- diamonds_dt[cut == "Premium" & price > 7000 & price < 10000, .(carat, cut, price)
+][order(-carat)][1:20]
+
+print(result_dt)
